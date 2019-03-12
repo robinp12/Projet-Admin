@@ -3,3 +3,13 @@ FROM ubuntu:16.04
 
 # Installer les paquets suivants : 
 RUN apt-get update && apt-get install -y nginx
+
+# Configurations de chaque site
+COPY wt3.ephec-ti.be /etc/nginx/sites-available/
+COPY b2b.wt3.ephec-ti.be /etc/nginx/sites-available/
+COPY intranet.wt3.ephec-ti.be /etc/nginx/sites-available/
+
+# Creer un lien pour chaque site dans sites-enabled
+RUN ln -s /etc/nginx/sites-available/wt3.ephec-ti.be /etc/nginx/sites-enabled
+RUN ln -s /etc/nginx/sites-available/b2b.wt3.ephec-ti.be /etc/nginx/sites-enabled
+RUN ln -s /etc/nginx/sites-available/intranet.wt3.ephec-ti.be /etc/nginx/sites-enabled
