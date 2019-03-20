@@ -1,0 +1,27 @@
+# A partir d'une image ubuntu 16.04
+FROM ubuntu:16.04
+
+# Installer les paquets suivants : 
+RUN apt-get update && apt-get install -y nginx
+
+# Configurations de chaque site
+
+COPY wt3.ephec-ti.be /etc/nginx/sites-available/
+COPY b2b.wt3.ephec-ti.be /etc/nginx/sites-available/
+COPY intranet.wt3.ephec-ti.be /etc/nginx/sites-available/
+
+# Creer un lien pour chaque site dans sites-enabled
+RUN ln -s /etc/nginx/sites-available/wt3.ephec-ti.be /etc/nginx/sites-enabled
+RUN ln -s /etc/nginx/sites-available/b2b.wt3.ephec-ti.be /etc/nginx/sites-enabled
+RUN ln -s /etc/nginx/sites-available/intranet.wt3.ephec-ti.be /etc/nginx/sites-enabled
+
+RUN mkdir -p /var/www/wt3.ephec-ti.be
+RUN mkdir -p /var/www/b2b.wt3.ephec-ti.be
+RUN mkdir -p /var/www/intranet.wt3.ephec-ti.be
+
+COPY index.html /var/www/wt3.ephec-ti.be
+COPY b2b.index.html /var/www/b2b.wt3.ephec-ti.be
+COPY intranet.index.html /var/www/intranet.wt3.ephec-ti.be
+
+# Exposer les ports
+EXPOSE 80 443
