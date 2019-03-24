@@ -7,11 +7,6 @@ zone "." {
 // be authoritative for the localhost forward and reverse zones, and for
 // broadcast zones as per RFC 1912
 
-zone "wt3.ephec-ti.be" {
-        type master;
-        file "/etc/bind/db.wt3.ephec-ti.be";
-};
-
 zone "127.in-addr.arpa" {
         type master;
         file "/etc/bind/db.127";
