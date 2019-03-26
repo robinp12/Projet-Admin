@@ -10,7 +10,6 @@ $ORIGIN wt3.ephec-ti.be.
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-ns      IN      A       51.77.145.128
 @       IN      NS      ns.wt3.ephec-ti.be.
 ns      IN      A       51.77.145.128
 web     IN      A       51.77.145.128
