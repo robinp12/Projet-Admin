@@ -2,25 +2,31 @@
 FROM ubuntu:16.04
 
 # Installer les paquets suivants : 
-RUN apt-get update && apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx && apt-get install -y php-fpm php-mysql
 
-# Configurations de chaque site
+# Copier la configurations de chaque site
+
 COPY wt3.ephec-ti.be /etc/nginx/sites-available/
 COPY b2b.wt3.ephec-ti.be /etc/nginx/sites-available/
 COPY intranet.wt3.ephec-ti.be /etc/nginx/sites-available/
 
-# Creer un lien pour chaque site dans sites-enabled
+# Creer un lien pour la config de chaque site dans sites-enabled
 RUN ln -s /etc/nginx/sites-available/wt3.ephec-ti.be /etc/nginx/sites-enabled
 RUN ln -s /etc/nginx/sites-available/b2b.wt3.ephec-ti.be /etc/nginx/sites-enabled
 RUN ln -s /etc/nginx/sites-available/intranet.wt3.ephec-ti.be /etc/nginx/sites-enabled
 
+# Creation des dossiers utiles aux pages web
 RUN mkdir -p /var/www/wt3.ephec-ti.be
 RUN mkdir -p /var/www/b2b.wt3.ephec-ti.be
 RUN mkdir -p /var/www/intranet.wt3.ephec-ti.be
 
+# Copier les fichiers index
 COPY index.html /var/www/wt3.ephec-ti.be
-COPY b2b.index.html /var/www/b2b.wt3.ephec-ti.be
+COPY b2b.index.php /var/www/b2b.wt3.ephec-ti.be
 COPY intranet.index.html /var/www/intranet.wt3.ephec-ti.be
+
+# Securiser en modifiant la configuration par défaut de PHP en changeant le pathinfo a 0
+RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.ini
 
 # Exposer les ports
 EXPOSE 80 443
