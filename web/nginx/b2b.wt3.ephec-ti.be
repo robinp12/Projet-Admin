@@ -14,8 +14,8 @@
 # Default server configuration
 #
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 80;
+        listen [::]:80;
 
         # SSL configuration
         #
@@ -33,12 +33,12 @@ server {
         #
         # include snippets/snakeoil.conf;
 
-         root /var/www/b2b.wt3.ephec-ti.be;
+         root /var/www/b2b.wt3.ephec-ti.be www.b2b.wt3.ephec-ti.be;
 
         # Add index.php to the list if you are using PHP
-        index index.html index.htm index.nginx-debian.html;
+        index index.html index.htm index.nginx-debian.html index.php;
 
-        server_name b2b.wt3.ephec-ti.be;
+        server_name b2b.wt3.ephec-ti.be www.b2b.wt3.ephec-ti.be;
 
         location / {
                 # First attempt to serve request as file, then
@@ -48,21 +48,19 @@ server {
 
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
         #
-        #location ~ \.php$ {
-        #       include snippets/fastcgi-php.conf;
-        #
-        #       # With php7.0-cgi alone:
-        #       fastcgi_pass 127.0.0.1:9000;
-        #       # With php7.0-fpm:
-        #       fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-        #}
+        location ~ \.php$ {
+               include snippets/fastcgi-php.conf;
+        
+               # With php7.0-fpm:
+               fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+        }
 
         # deny access to .htaccess files, if Apache's document root
         # concurs with nginx's one
         #
-        #location ~ /\.ht {
-        #       deny all;
-        #}
+        location ~ /\.ht {
+               deny all;
+        }
 }
 
 
