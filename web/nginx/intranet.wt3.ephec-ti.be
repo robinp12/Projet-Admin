@@ -14,8 +14,8 @@
 # Default server configuration
 #
 server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
+        listen 80;
+        listen [::]:80;
 
         # SSL configuration
         #
@@ -38,7 +38,7 @@ server {
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
-        server_name intranet.wt3.ephec-ti.be;
+        server_name intranet.wt3.ephec-ti.be www.intranet.wt3.ephec-ti.be;
 
         location / {
                 # First attempt to serve request as file, then
