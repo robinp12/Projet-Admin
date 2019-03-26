@@ -33,7 +33,7 @@ server {
         #
         # include snippets/snakeoil.conf;
 
-         root /var/www/b2b.wt3.ephec-ti.be www.b2b.wt3.ephec-ti.be;
+         root /var/www/b2b.wt3.ephec-ti.be;
 
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html index.php;
