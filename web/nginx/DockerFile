@@ -9,11 +9,13 @@ RUN apt-get update && apt-get install -y nginx && apt-get install -y php-fpm php
 COPY wt3.ephec-ti.be /etc/nginx/sites-available/
 COPY b2b.wt3.ephec-ti.be /etc/nginx/sites-available/
 COPY intranet.wt3.ephec-ti.be /etc/nginx/sites-available/
+COPY default /etc/nginx/sites-available/
 
 # Creer un lien pour la config de chaque site dans sites-enabled
 RUN ln -s /etc/nginx/sites-available/wt3.ephec-ti.be /etc/nginx/sites-enabled
 RUN ln -s /etc/nginx/sites-available/b2b.wt3.ephec-ti.be /etc/nginx/sites-enabled
 RUN ln -s /etc/nginx/sites-available/intranet.wt3.ephec-ti.be /etc/nginx/sites-enabled
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled
 
 # Creation des dossiers utiles aux pages web
 RUN mkdir -p /var/www/wt3.ephec-ti.be
