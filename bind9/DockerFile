@@ -11,4 +11,4 @@ COPY named.conf.default-zones /etc/bind
 COPY db.wt3.ephec-ti.be /etc/bind
 COPY db.intra.wt3.ephec-ti.be /etc/bind
 
-CMD ["usr/sbin/named"]
+CMD ["usr/sbin/named", "-f", "-g"]
