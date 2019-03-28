@@ -29,5 +29,5 @@ view external {
         zone "wt3.ephec-ti.be" {
                 type master;
                 file "/etc/bind/db.wt3.ephec-ti.be";
-}
-
+        };
+};
