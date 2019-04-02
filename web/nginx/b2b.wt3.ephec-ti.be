@@ -38,7 +38,7 @@ server {
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html index.php;
 
-        server_name b2b.wt3.ephec-ti.be www.b2b.wt3.ephec-ti.be;
+        server_name b2b.wt3.ephec-ti.be;
 
         location / {
                 # First attempt to serve request as file, then
