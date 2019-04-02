@@ -15,8 +15,7 @@ acl autorise {
 view internal {
         match-clients { autorise; };
         recursion yes;
-        allow-recursion { company; };
-
+        allow-recursion { autorise; };
         zone "wt3.ephec-ti.be" {
                 type master;
                 file "/etc/bind/db.intra.wt3.ephec-ti.be";
@@ -25,7 +24,6 @@ view internal {
 
 view external {
         match-clients { any;};
-
         zone "wt3.ephec-ti.be" {
                 type master;
                 file "/etc/bind/db.wt3.ephec-ti.be";
