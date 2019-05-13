@@ -13,4 +13,4 @@ COPY extensions.conf /etc/asterisk
 EXPOSE 5060 5060/udp
 EXPOSE 10000-20000/udp
 
-CMD sudo asterisk -r -vvvvvvc
+CMD asterisk -vvvvvvc
