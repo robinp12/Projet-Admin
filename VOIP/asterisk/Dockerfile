@@ -8,9 +8,9 @@ RUN apt-get update && apt-get install -y asterisk
 COPY sip.conf /etc/asterisk
 COPY users.conf /etc/asterisk
 COPY extensions.conf /etc/asterisk
-COPY voicemail.conf /etc/asterisk
+
 # Exposer les ports
 EXPOSE 5060 5060/udp
 EXPOSE 10000-20000/udp
 
-CMD reload
+CMD asterisk -vvvvvvc
