@@ -11,5 +11,7 @@ COPY named.conf.default-zones /etc/bind
 COPY db.wt3.ephec-ti.be /etc/bind
 COPY db.intra.wt3.ephec-ti.be /etc/bind
 
+EXPOSE 53/udp 53/tcp
+
 # Parametres a ajouter pour lancer bind9
-CMD ["named", "-c", "/etc/bind/named.conf", "-g", "-u", "named"]
+CMD ["/usr/sbin/named", "-g", "-c", "/etc/bind/named.conf", "-u", "bind"]
