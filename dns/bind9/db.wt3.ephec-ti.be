@@ -18,6 +18,8 @@ web     IN      A       51.77.145.128
 www     IN      CNAME   web
 b2b     IN      CNAME   web
 ;MAIL
+
+@       IN      MX      1       mail
 mail		IN	    A	      51.77.145.128
         IN      MX      10      mail
 ;VOIP
