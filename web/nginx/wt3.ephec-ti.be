@@ -19,8 +19,8 @@ server {
 
         # SSL configuration
         #
-        listen 443 ssl default_server;
-        listen [::]:443 ssl default_server;
+        listen 443 ssl http2 default_server;
+        listen [::]:443 ssl http2 default_server;
         #
         # Note: You should disable gzip for SSL traffic.
         # See: https://bugs.debian.org/773332
@@ -32,15 +32,17 @@ server {
         # Don't use them in a production server!
         #
         # include snippets/snakeoil.conf;
-
-        ssl_certificate /etc/nginx/cert/wt3.ephec-ti.be.crt;
-        ssl_certificate_key /etc/nginx/cert/wt3.ephec-ti.be.key;
+        
         root /var/www/wt3.ephec-ti.be;
 
         # Add index.php to the list if you are using PHP
         index index.html index.htm index.nginx-debian.html;
 
         server_name wt3.ephec-ti.be;
+        
+        ssl_certificate    /etc/nginx/cert/cert.pem; #(or bundle.crt)
+        ssl_certificate_key    /etc/nginx/cert/key.pem;
+
 
         location / {
                 # First attempt to serve request as file, then
