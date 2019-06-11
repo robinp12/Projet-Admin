@@ -2,7 +2,8 @@
 FROM ubuntu:16.04
 
 # Installer les paquets suivants : 
-RUN apt-get update && apt-get install -y bind9
+RUN apt-get update && apt-get install -y bind9 && apt-get install -y dnsutils
+
 
 # Copier tous les fichiers de config
 COPY named.conf.local /etc/bind
